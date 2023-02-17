@@ -128,7 +128,7 @@ def maybe_recompile_figure(filepath):
     pdf_path = filepath.parent / (filepath.stem + '.pdf')
     name = filepath.stem
 
-    inkscape_version = subprocess.check_output(['inkscape', '--version'], universal_newlines=True)
+    inkscape_version = subprocess.check_output(["/Applications/Inkscape.app/Contents/MacOS/inkscape", '--version'], universal_newlines=True)
     log.debug(inkscape_version)
 
     # Convert
@@ -144,7 +144,7 @@ def maybe_recompile_figure(filepath):
     # Tuple comparison is like version comparison
     if inkscape_version_number < [1, 0, 0]:
         command = [
-            'inkscape',
+            "/Applications/Inkscape.app/Contents/MacOS/inkscape",
             '--export-area-page',
             '--export-dpi', '300',
             '--export-pdf', pdf_path,
@@ -152,7 +152,7 @@ def maybe_recompile_figure(filepath):
             ]
     else:
         command = [
-            'inkscape', filepath,
+            "/Applications/Inkscape.app/Contents/MacOS/inkscape", filepath,
             '--export-area-page',
             '--export-dpi', '300',
             '--export-type=pdf',
